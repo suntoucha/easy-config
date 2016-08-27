@@ -53,3 +53,22 @@ func KeyString(key string) (string, error) {
 
 	return s, nil
 }
+
+
+
+func KeyInt(key string) (int, error) {
+	var (
+		i int
+		err error
+		)
+
+	if keyMap == nil {
+		return 0, errors.New("Key map is empty. Use easyconfig.Init(<filename>)")
+	}
+
+	if err = json.Unmarshal(*keyMap[key], &i); err != nil {
+		return 0, err
+	}
+
+	return i, nil
+}
